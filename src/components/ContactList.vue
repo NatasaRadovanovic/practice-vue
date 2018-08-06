@@ -17,11 +17,12 @@
   <tr v-for="(contact, key) in contacts" :key="key"><!--onda umesto ""
              :key="key"> ide :key="contact.id"> i brise se ovo key u zagradi tj
              <tr v-for="contact in contacts" :key="contact.id">-->
-   <td>{{ contact.name }}</td> 
+   <td v-if="contact.name == 'Natasa' "> Hello Natasa</td> 
+   <td v-else > {{ contact.name }}</td> 
  <td>{{ contact.email }}</td> 
- <td>
+ <span>
     <button @click ="deleteContact(contact)">Delete</button>
- </td> 
+ </span> 
   </tr>
 </table>
   
@@ -96,4 +97,5 @@ export default {
     background-color: #4CAF50;
     color: white;
 }
+
 </style>
