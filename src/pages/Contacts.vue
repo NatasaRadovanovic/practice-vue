@@ -1,13 +1,22 @@
 <template>
   <div id="app">
   <h1>Contacts</h1>
-  <router-link to="add-contact">Go to add contact</router-link>
+  <ContactListProps :contactList="contacts"/>
+  <ContactDetails :contact="contact" />
+
+
   </div>
 </template>
 
 <script>
+import ContactListProps from '../components/ContactListProps.vue'
+import ContactDetails from '../components/ContactDetails.vue'
 
 export default {
+    components:{
+        ContactListProps,
+        ContactDetails
+    },
   name: 'Contacts',
   data(){
       return{
@@ -17,7 +26,24 @@ export default {
          { id: 3, name: 'Nenad Vujicic', email: 'nenad.v@example.com', number: '555-67890' }
        ]
       }
-  }
+     
+  },
+   computed: {
+          contact(){
+               let routeParam = this.$route.params.id;
+               return this.contacts.find(contact => contact.id === routeParam);
+            //   let routeParam = this.$route.params.id;
+            //   let returnContact = {};
+            //   this.contacts.forEach(contact => {
+            //       if(contact.id == routeParam){
+            //           console.log(contact);
+            //          returnContact = contact;
+            //       }
+            //   });
+            //   return returnContact;
+            
+          }
+      }
 }
 </script>
 
