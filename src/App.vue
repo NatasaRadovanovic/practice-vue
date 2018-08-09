@@ -1,19 +1,35 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <ContactList/>
+  <NavBar/>
+  <router-view></router-view>
+
+   <!-- <ContactList 
+    :title = "parenTitle"
+    @parentMtd = "parentMethod"/> -->
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import ContactList from './components/ContactList.vue'
+import NavBar from './components/NavBar.vue'
 
 export default {
   name: 'app',
+  data(){
+    return{
+      parenTitle:"title from parent"
+    }
+  },
   components: {
     HelloWorld,
-    ContactList
+    ContactList,
+    NavBar
+  },
+  methods:{
+    parentMethod(value){
+      console.log(value);
+    }
   }
 }
 </script>

@@ -1,5 +1,8 @@
 <template>
 <div>
+    <h3>{{ title }}</h3>
+    <h3>{{ title.split(' ').reverse().join()}}</h3>
+    <h3>{{ reverseTitle() }}</h3>
     <h2>Contact List</h2>
     <form @submit.prevent>
         <label>Name</label>
@@ -21,17 +24,18 @@
    <td v-else > {{ contact.name }}</td> 
  <td>{{ contact.email }}</td> 
  <span>
-    <button @click ="deleteContact(contact)">Delete</button>
+    <button class="btn btn-danger" @click ="deleteContact(contact)">Delete</button>
  </span> 
   </tr>
 </table>
-  
+  <button @click = "callParentMethod">Method from parent</button>
   </div> 
 </template>
 
 <script>
 
 export default {
+  props:['title'],
   name: 'ContactList',
   data()
   {
@@ -50,6 +54,9 @@ export default {
     }
   },
   methods: {
+      callParentMethod(){
+          this.$emit('parentMtd','Natasa'); //ako hocemo parametar, to je ovo posle zareza tj Natasa
+      },
       addContact(){
           this.contacts.push(this.newContact); // pusujemo u listu contacts objekat newContact
           this.newContact = {};//za resetovanje
@@ -60,8 +67,12 @@ export default {
           let indexOfContactToDelete = this.contacts.indexOf(contact);
           //indexOf taj kontakt
           this.contacts.splice(indexOfContactToDelete, 1);
+      },
+      reverseTitle(){
+          return this.title.split(' ').reverse().join();
       }
-  }
+  },
+
 }
 </script>
 
