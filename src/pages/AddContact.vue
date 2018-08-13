@@ -63,12 +63,29 @@ export default {
       }
     }
   },
+  created(){
+    if(this.$route.params.id){
+      contacts.get(this.$route.params.id)
+      .then(response => (this.contact = response.data))
+      .catch(err => console.log(err))
+    }
+  },
   methods:{
     onSubmit(){
+      this.$route.params.id ? this.editContact() : this.addContact()
+    },
+    addContact(){
       contacts.add(this.contact)
       .then(response => {
         this.$router.push('/contacts')//redirektovanje
         console.log(this.$router);
+      })
+      .catch(err => console.log(err))
+    },
+    editContact(){
+      contacts.edit(this.contact)
+      .then(response=> {
+        this.$router.push('/contacts')
       })
       .catch(err => console.log(err))
     }

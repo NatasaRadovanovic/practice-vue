@@ -17,6 +17,11 @@
       <td>{{ contact.email }}</td>
       <td>{{ contact.number }}</td>
        <td><button class="btn btn-danger" @click="onDelete"><i class="fas fa-trash"></i></button></td>
+       <td><router-link :to="{name:'add-contact', params: {id:contact.id}}">
+       <button class="btn btn-danger"><i class="fas fa-pencil-alt"></i></button>
+         </router-link>
+         </td>
+     
     </tr>
   </tbody>
 </table>

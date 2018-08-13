@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Contacts</h1>
     <ContactListProps :contactList="contacts"/>
-    <ContactDetails v-if="contact" :contact="contact" 
+    <ContactDetails v-if="contact && contact.id" :contact="contact" 
     @contactDeleted = "onContactDelete"/>
   </div>
 </template>
