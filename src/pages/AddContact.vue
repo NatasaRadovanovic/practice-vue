@@ -48,6 +48,8 @@
 
 <script>
 
+import { contacts } from '../services/Contacts.js'
+
 export default {
   name: 'AddContact', 
 
@@ -59,6 +61,16 @@ export default {
         email:'',
         number:''
       }
+    }
+  },
+  methods:{
+    onSubmit(){
+      contacts.add(this.contact)
+      .then(response => {
+        this.$router.push('/contacts')//redirektovanje
+        console.log(this.$router);
+      })
+      .catch(err => console.log(err))
     }
   }
  }

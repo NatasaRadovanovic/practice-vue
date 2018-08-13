@@ -16,6 +16,7 @@
        <td>{{ contact.last_name }}</td>
       <td>{{ contact.email }}</td>
       <td>{{ contact.number }}</td>
+       <td><button class="btn btn-danger" @click="onDelete"><i class="fas fa-trash"></i></button></td>
     </tr>
   </tbody>
 </table>
@@ -23,11 +24,19 @@
 </template>
 
 <script>
+import { contacts } from '../services/Contacts.js'
 
 export default {
-  name: 'Contactdetails',
-  props:['contact']
-
+  name: 'ContactDetails',
+  props:['contact'],
+  methods:{ 
+    onDelete(){
+      contacts.delete(this.contact.id)
+      .then(response => this.$emit('contactDeleted', this.contact)
+    )
+    .catch(err=>console.log(err))
+    }
+   }
 }
 </script>
 

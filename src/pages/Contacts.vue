@@ -2,7 +2,8 @@
   <div id="app">
     <h1>Contacts</h1>
     <ContactListProps :contactList="contacts"/>
-    <ContactDetails v-if="contact" :contact="contact" />
+    <ContactDetails v-if="contact" :contact="contact" 
+    @contactDeleted = "onContactDelete"/>
   </div>
 </template>
 
@@ -48,8 +49,16 @@ export default {
             //   return returnContact;
             
           }
+      },
+
+      methods:{
+        onContactDelete(contact){
+          let contactIndex = this.contacts.findIndex(c => c.id === contact.id)
+          this.contacts.splice(contactIndex, 1)
+        }
       }
 }
+
 </script>
 
 <style>
