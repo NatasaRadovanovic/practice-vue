@@ -4,14 +4,16 @@
   <table class="table">
   <thead>
     <tr>
-      <th scope="col">Name</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
       <th scope="col">Email</th>
       <th scope="col">Number</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>{{ contact.name }}</td>
+      <td>{{ contact.first_name }}</td>
+       <td>{{ contact.last_name }}</td>
       <td>{{ contact.email }}</td>
       <td>{{ contact.number }}</td>
     </tr>
@@ -23,7 +25,7 @@
 <script>
 
 export default {
-  name: 'Contact details',
+  name: 'Contactdetails',
   props:['contact']
 
 }

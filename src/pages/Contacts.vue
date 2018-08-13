@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-  <h1>Contacts</h1>
-  <ContactListProps :contactList="contacts"/>
-  <ContactDetails :contact="contact" />
-
-
+    <h1>Contacts</h1>
+    <ContactListProps :contactList="contacts"/>
+    <ContactDetails v-if="contact" :contact="contact" />
   </div>
 </template>
 
 <script>
 import ContactListProps from '../components/ContactListProps.vue'
 import ContactDetails from '../components/ContactDetails.vue'
+import { contacts } from './../services/Contacts.js'
 
 export default {
     components:{
@@ -20,17 +19,23 @@ export default {
   name: 'Contacts',
   data(){
       return{
-          contacts: [
-         { id: 1, name: 'John Doe', email: 'johndoe@example.com', number: '555-12345' },
-         { id: 2, name: 'Pera Peric', email: 'peraperic@example.com', number: '555-54321' },
-         { id: 3, name: 'Nenad Vujicic', email: 'nenad.v@example.com', number: '555-67890' }
-       ]
+          contacts: []
       }
-     
-  },
+    },
+    beforeRouteEnter (to, from, next) { //pre nego sto se kreira sama instanca this. nije dostupno
+    //a created je reload tad se okida
+      contacts.getAll()
+      .then(response =>{
+       next(vm => {
+         vm.contacts = response.data
+       }) //vm je kao this
+      })
+      .catch(err => console.log(err))
+    },
    computed: {
           contact(){
                let routeParam = this.$route.params.id;
+               //console.log(routeParam);
                return this.contacts.find(contact => contact.id === routeParam);
             //   let routeParam = this.$route.params.id;
             //   let returnContact = {};

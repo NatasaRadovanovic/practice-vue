@@ -6,7 +6,7 @@
    v-for="(contact, key) in contactList" :key="key" 
    :to="{name:'contact-details',params: {id:contact.id}}"
    exact-active-class = "active">
-   {{ contact.name }}<br>
+   {{ contact.first_name }} {{ contact.last_name }}<br>
    </router-link> 
   </div>
   </template>

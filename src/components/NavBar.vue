@@ -10,7 +10,7 @@
 <script>
 
 export default {
-  name: 'Add contact',
+  name: 'NavBar',
 }
 </script>
 
