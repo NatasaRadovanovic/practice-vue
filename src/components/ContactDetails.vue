@@ -13,7 +13,7 @@
   <tbody>
     <tr>
       <td>{{ contact.first_name }}</td>
-       <td>{{ contact.last_name }}</td>
+      <td>{{ contact.last_name }}</td>
       <td>{{ contact.email }}</td>
       <td>{{ contact.number }}</td>
        <td><button class="btn btn-danger" @click="onDelete"><i class="fas fa-trash"></i></button></td>

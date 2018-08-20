@@ -3,10 +3,23 @@ import App from './App.vue'
 import VueRouter from 'vue-router';
 import AddContact from './pages/AddContact.vue';
 import Contacts from './pages/Contacts.vue';
-console.log()
+import MyPlugin from './plugins'; //ne ide / kad je index.js ,prepoznaje
 
 Vue.use(VueRouter);
+Vue.use(MyPlugin);
+
 Vue.config.productionTip = false
+
+/*Vue.directive('focus', {
+   inserted:function(el, binding, vnode, oldVnode){
+     el.focus();
+      console.log(el, binding, vnode, oldVnode);
+   } //element u domu, binding objekat sa puno parametra
+   //vnode i oldVnode su virtuelni dom-ovi
+   
+})*/
+
+
 
 const routes = [
   {path: '/', redirect: "contacts"},
